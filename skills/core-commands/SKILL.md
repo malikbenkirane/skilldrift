@@ -5,7 +5,16 @@ description: Use when running any shell command, especially jj/git operations, o
 
 # Core Commands
 
-This skill defines prohibited commands and the temp file pattern for multi-line content.
+## Overview
+
+This repo uses `jj` exclusively. Git commands are prohibited. Multi-line content must use mktemp + Write tool pattern.
+
+## When to Use
+
+- Before running any shell command
+- Working with jj/git operations
+- Creating temp files for multi-line content
+- **When NOT to use:** Simple single-line commands with no temp files
 
 ## Before Running Any Command
 
