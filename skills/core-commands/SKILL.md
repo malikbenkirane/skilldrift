@@ -16,18 +16,6 @@ This repo uses `jj` exclusively. Git commands are prohibited. Multi-line content
 - Creating temp files for multi-line content
 - **When NOT to use:** Simple single-line commands with no temp files
 
-## Before Running Any Command
-
-Check if the command starts with a prohibited prefix:
-1. Does it start with `git`? → Find jj equivalent in table below
-2. Does it start with `jj log`? → Use `jj status` instead
-3. Does it start with `jj op`? → Not allowed, ask user
-4. Does it start with `jj abandon`? → Use `jj new` instead
-5. Does it start with `jj edit`? → Not allowed, use `jj new` instead
-6. Does it start with `jj prev` or `jj next`? → Ask user first
-7. Does it have `-i` flag? → Not allowed (interactive)
-8. Does `jj new` have any arguments? → Not allowed, use plain `jj new` only
-
 ## Prohibited Commands
 
 NEVER use git commands. This repo uses `jj` exclusively.
