@@ -64,6 +64,8 @@ NEVER use git commands. This repo uses `jj` exclusively.
 
 ## GitHub (`gh`) Commands
 
+All multi-line content (issue bodies, PR descriptions, comments) uses the temp file pattern below.
+
 | Action | Command | Notes |
 |--------|---------|-------|
 | Create issue | `gh issue new -t '<title>' -F "$TMPFILE"` | Use temp file pattern for body |
