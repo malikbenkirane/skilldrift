@@ -1,10 +1,18 @@
 # skilldrift
 
-A small collection of agent skills.
-Most of them started as someone else's work.
-I've changed them to fit the way I use them.
-Nothing here is original or polished. If something's useful, take it.
-I'll probably rearrange things as I go.
+<!-- toc -->
+- [Repo structure](#repo-structure)
+- [Install](#install)
+  - [Interactive Install](#interactive-install)
+  - [Specific Skill Install](#specific-skill-install)
+- [Acknowledgments](#acknowledgments)
+<!-- /toc -->
+
+A small collection of agent skills. Most of them started as someone else's
+work. I've changed them to fit the way I use them. Nothing here is original
+or polished. If something's useful, take it.
+
+Note that I'll probably rearrange things as I go.
 
 ## Repo structure
 
@@ -15,17 +23,27 @@ skills/      the skills themselves
 
 ## Install
 
-Interactive install:
+### Interactive Install
 
-```
+```sh
 npx skills add https://github.com/vercel-labs/skills
+```
+
+or
+
+```sh
 pnx skills add https://github.com/vercel-labs/skills
 ```
 
-Specific skill:
+### Specific Skill Install
 
-```
+```sh
 npx skills add https://github.com/vercel-labs/skills --skill NAME
+```
+
+or
+
+```sh
 pnx skills add https://github.com/vercel-labs/skills --skill NAME
 ```
 
