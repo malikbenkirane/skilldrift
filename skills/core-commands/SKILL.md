@@ -1,6 +1,6 @@
 ---
 name: core-commands
-description: Core command guidelines - prohibited commands and temp file patterns. ALWAYS load this skill at session start.
+description: Use when running any shell command, especially jj/git operations, or creating multi-line content via temp files
 ---
 
 # Core Commands
