@@ -101,3 +101,14 @@ mktemp
 gh issue new -t 'Issue title' -F "/tmp/tmp.AbCdEf"
 rm "/tmp/tmp.AbCdEf"
 ```
+
+## Common Mistakes
+
+| Mistake | Problem | Fix |
+|---------|---------|-----|
+| `cat <<'EOF'` for multi-line | Escaping issues, unreliable | Use mktemp + Write tool |
+| `echo` for multi-line | Backslash/special char failures | Use mktemp + Write tool |
+| `git status` | Wrong VCS | `jj status` |
+| `jj log` | Incoherent output | `jj status` or `jj op log` |
+| `jj new <args>` | Only plain `jj new` allowed | Run `jj new` without arguments |
+| Skipping temp file cleanup | Pollutes /tmp | Always `rm` when done |
