@@ -1,6 +1,6 @@
 ---
 name: writing-plans
-description: Use when you have a spec or requirements for a multi-step task, before touching code
+description: Create detailed implementation plans from specs before coding. Trigger when user provides requirements, asks for a plan, says "how should I implement X", or needs to break down a multi-step feature. Use BEFORE touching any code.
 ---
 
 # Writing Plans
@@ -13,10 +13,12 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-**Context:** If working in an isolated worktree, it should have been created via the `superpowers:using-git-worktrees` skill at execution time.
-
 **Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
 - (User preferences for plan location override this default)
+
+## Prerequisites
+
+**REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). All commit steps in plans use the temp file pattern for multi-line content.
 
 ## Scope Check
 
@@ -97,9 +99,16 @@ Expected: PASS
 
 - [ ] **Step 5: Commit**
 
+Use temp file pattern from core-commands skill for commit message:
 ```bash
-git add tests/path/test.py src/path/file.py
-git commit -m "feat: add specific feature"
+mktemp
+# Returns: /tmp/tmp.XXXXXX
+```
+Then use Write tool to save commit message to that path, then:
+```bash
+jj describe --stdin < "/tmp/tmp.XXXXXX"
+rm "/tmp/tmp.XXXXXX"
+jj new
 ```
 ````
 
@@ -123,6 +132,8 @@ Every step must contain the actual content an engineer needs. These are **plan f
 
 After writing the complete plan, look at the spec with fresh eyes and check the plan against it. This is a checklist you run yourself — not a subagent dispatch.
 
+**Optional:** For independent verification, dispatch a reviewer subagent using the template in `plan-document-reviewer-prompt.md`.
+
 **1. Spec coverage:** Skim each section/requirement in the spec. Can you point to a task that implements it? List any gaps.
 
 **2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
@@ -139,14 +150,6 @@ After saving the plan, offer execution choice:
 
 **1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
 
-**2. Inline Execution** - Execute tasks in this session using executing-plans, batch execution with checkpoints
+**2. Inline Execution** - Execute tasks in this session, batch execution with checkpoints
 
 **Which approach?"**
-
-**If Subagent-Driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-- Fresh subagent per task + two-stage review
-
-**If Inline Execution chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
-- Batch execution with checkpoints for review
