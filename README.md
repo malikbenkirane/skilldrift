@@ -51,9 +51,8 @@ pnx skills add https://github.com/vercel-labs/skills --skill NAME
 
 Thanks to the people who wrote the original skills.
 
-<!--
-| Repo | Skill | Link |
-|------|-------|------|
-|      |       |      |
-|      |       |      |
--->
+| Repo                  | Skill           | 
+|-                      |-                |
+| [obra/superpowers][1] | `writing-plans` |
+
+[1]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/writing-plans
