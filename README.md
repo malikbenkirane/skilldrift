@@ -54,5 +54,7 @@ Thanks to the people who wrote the original skills.
 | Repo                  | Skill           | 
 |-                      |-                |
 | [obra/superpowers][1] | `writing-plans` |
+| [obra/superpowers][2] | `subagent-driven-development` |
 
 [1]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/writing-plans
+[2]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/subagent-driven-development
