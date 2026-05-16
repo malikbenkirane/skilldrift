@@ -84,20 +84,18 @@ All multi-line content (issue bodies, PR descriptions, comments) uses the temp f
 Each Bash tool invocation runs in an independent shell. Variables don't persist. Use this pattern:
 
 1. `mktemp` → returns path like `/tmp/tmp.XXXXXX`
-2. Read tool → check existing content
+2. Read tool → check existing content (if any)
 3. Write tool → write content to that path
 4. Pass path to command: `cmd --option "/tmp/tmp.XXXXXX"`
 5. Clean up: `rm "/tmp/tmp.XXXXXX"`
 
-### Example: Creating GitHub Issue
+### Example
 
 ```bash
 mktemp
 # Tool returns: /tmp/tmp.AbCdEf
-
 # Use Read tool to check existing content (if any)
 # Use Write tool to write issue description to /tmp/tmp.AbCdEf
-
 gh issue new -t 'Issue title' -F "/tmp/tmp.AbCdEf"
 rm "/tmp/tmp.AbCdEf"
 ```
