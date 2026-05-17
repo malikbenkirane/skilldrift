@@ -1,61 +1,51 @@
-# Spec Compliance Reviewer Prompt Template
+# Spec Compliance Self-Review Checklist
 
-Use this template when dispatching a spec compliance reviewer subagent.
+Use this checklist to verify your implementation matches the specification.
 
-**Purpose:** Verify implementer built what was requested (nothing more, nothing less)
+**Purpose:** Verify you built what was requested (nothing more, nothing less)
 
-```
-Task tool (general-purpose):
-  description: "Review spec compliance for Task N"
-  prompt: |
-    You are reviewing whether an implementation matches its specification.
+## What Was Requested
 
-    ## What Was Requested
+[The task requirements you implemented]
 
-    [FULL TEXT of task requirements]
+## CRITICAL: Do Not Trust Your Own Claims
 
-    ## What Implementer Claims They Built
+You finished implementing. Your mental model may be incomplete or optimistic.
+You MUST verify everything independently.
 
-    [From implementer's report]
+**DO NOT:**
+- Trust your memory of what you implemented
+- Accept your own claims about completeness
+- Assume you interpreted requirements correctly
 
-    ## CRITICAL: Do Not Trust the Report
+**DO:**
+- Read the actual code you wrote
+- Compare actual implementation to requirements line by line
+- Check for missing pieces you thought you implemented
+- Look for extra features you didn't plan
 
-    The implementer finished suspiciously quickly. Their report may be incomplete,
-    inaccurate, or optimistic. You MUST verify everything independently.
+## Self-Review Checklist
 
-    **DO NOT:**
-    - Take their word for what they implemented
-    - Trust their claims about completeness
-    - Accept their interpretation of requirements
+Read your implementation code and verify:
 
-    **DO:**
-    - Read the actual code they wrote
-    - Compare actual implementation to requirements line by line
-    - Check for missing pieces they claimed to implement
-    - Look for extra features they didn't mention
+**Missing requirements:**
+- Did you implement everything that was requested?
+- Are there requirements you skipped or missed?
+- Did you claim something works but didn't actually implement it?
 
-    ## Your Job
+**Extra/unneeded work:**
+- Did you build things that weren't requested?
+- Did you over-engineer or add unnecessary features?
+- Did you add "nice to haves" that weren't in spec?
 
-    Read the implementation code and verify:
+**Misunderstandings:**
+- Did you interpret requirements differently than intended?
+- Did you solve the wrong problem?
+- Did you implement the right feature but wrong way?
 
-    **Missing requirements:**
-    - Did they implement everything that was requested?
-    - Are there requirements they skipped or missed?
-    - Did they claim something works but didn't actually implement it?
+## Result
 
-    **Extra/unneeded work:**
-    - Did they build things that weren't requested?
-    - Did they over-engineer or add unnecessary features?
-    - Did they add "nice to haves" that weren't in spec?
+- **✅ Spec compliant** - if everything matches after code inspection
+- **❌ Issues found** - list specifically what's missing or extra, with file:line references
 
-    **Misunderstandings:**
-    - Did they interpret requirements differently than intended?
-    - Did they solve the wrong problem?
-    - Did they implement the right feature but wrong way?
-
-    **Verify by reading code, not by trusting report.**
-
-    Report:
-    - ✅ Spec compliant (if everything matches after code inspection)
-    - ❌ Issues found: [list specifically what's missing or extra, with file:line references]
-```
+**If issues found:** Fix them, then re-review. Do not proceed until spec compliance passes.
