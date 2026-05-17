@@ -13,9 +13,6 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
-**Save plans to:** `docs/superpowers/plans/YYYY-MM-DD-<feature-name>.md`
-- (User preferences for plan location override this default)
-
 ## Prerequisites
 
 **REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). All commit steps in plans use the temp file pattern for multi-line content.
@@ -51,7 +48,7 @@ This structure informs the task decomposition. Each task should produce self-con
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use supervised-plan-execution to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -142,14 +139,15 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 
+## Plan Save Location
+
+**Save plans to:** `docs/plans/<slug-name>.md`
+
+- `slug-name` = kebab-case feature description (e.g., `user-auth-flow.md`, `api-rate-limiting.md`)
+- User preferences override this default
+
 ## Execution Handoff
 
-After saving the plan, offer execution choice:
+After saving the plan:
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Two execution options:**
-
-**1. Subagent-Driven (recommended)** - I dispatch a fresh subagent per task, review between tasks, fast iteration
-
-**2. Inline Execution** - Execute tasks in this session, batch execution with checkpoints
-
-**Which approach?"**
+**"Plan saved to `docs/plans/<slug-name>.md`. Ready to execute with `supervised-plan-execution` — sequential implementation with two-stage self-review after each task. Proceed?"**
