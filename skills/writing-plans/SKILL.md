@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Prerequisites
 
-**REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). All commit steps in plans use the temp file pattern for multi-line content.
+**REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). Load the `caveman-commit` skill for commit message descriptions. All commit steps in plans use the temp file pattern for multi-line content.
 
 ## Scope Check
 
@@ -39,7 +39,7 @@ This structure informs the task decomposition. Each task should produce self-con
 - "Run it to make sure it fails" - step
 - "Implement the minimal code to make the test pass" - step
 - "Run the tests and make sure they pass" - step
-- "Commit" - step
+- **"Commit with caveman-commit"** - step
 
 ## Plan Document Header
 
@@ -94,9 +94,9 @@ def function(input):
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 5: Commit with caveman-commit**
 
-Use temp file pattern from core-commands skill for commit message:
+Use the `caveman-commit` skill to write a descriptive commit message. Then use temp file pattern from core-commands skill for commit message:
 ```bash
 mktemp
 # Returns: /tmp/tmp.XXXXXX
