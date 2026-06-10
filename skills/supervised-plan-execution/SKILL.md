@@ -42,8 +42,6 @@ digraph process {
 
     "Read plan, extract all tasks, create TodoWrite" [shape=box];
     "More tasks remain?" [shape=diamond];
-    "Final review of entire implementation" [shape=box];
-    "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Read plan, extract all tasks, create TodoWrite" -> "Implement task (follow steps exactly)";
     "Implement task (follow steps exactly)" -> "Run verifications";
@@ -59,7 +57,6 @@ digraph process {
     "Mark task complete" -> "More tasks remain?";
     "More tasks remain?" -> "Implement task (follow steps exactly)" [label="yes"];
     "More tasks remain?" -> "Final review of entire implementation" [label="no"];
-    "Final review of entire implementation" -> "Use superpowers:finishing-a-development-branch";
 }
 ```
 
