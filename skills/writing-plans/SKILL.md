@@ -96,16 +96,10 @@ Expected: PASS
 
 - [ ] **Step 5: Commit with caveman-commit**
 
-Use the `caveman-commit` skill to write a descriptive commit message. Then use temp file pattern from core-commands skill for commit message:
+Use `caveman-commit` for the commit message, then the temp file pattern from `core-commands`:
+
 ```bash
-mktemp
-# Returns: /tmp/tmp.XXXXXX
-```
-Then use Write tool to save commit message to that path, then:
-```bash
-jj describe --stdin < "/tmp/tmp.XXXXXX"
-rm "/tmp/tmp.XXXXXX"
-jj new
+jj describe --stdin < "$TMPFILE" && rm "$TMPFILE" && jj new
 ```
 ````
 
