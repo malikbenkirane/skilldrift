@@ -26,25 +26,37 @@ skills/      the skills themselves
 ### Interactive Install
 
 ```sh
-npx skills add https://github.com/vercel-labs/skills
+npx skills add https://github.com/malikbenkirane/skilldrift
 ```
 
 or
 
 ```sh
-pnx skills add https://github.com/vercel-labs/skills
+pnx skills add https://github.com/malikbenkirane/skilldrift
+```
+
+or
+
+```sh
+bunx skills add https://github.com/malikbenkirane/skilldrift
 ```
 
 ### Specific Skill Install
 
 ```sh
-npx skills add https://github.com/vercel-labs/skills --skill NAME
+npx skills add https://github.com/malikbenkirane/skilldrift --skill NAME
 ```
 
 or
 
 ```sh
-pnx skills add https://github.com/vercel-labs/skills --skill NAME
+pnx skills add https://github.com/malikbenkirane/skilldrift --skill NAME
+```
+
+or
+
+```sh
+bunx skills add https://github.com/malikbenkirane/skilldrift --skill NAME
 ```
 
 ## Acknowledgments
