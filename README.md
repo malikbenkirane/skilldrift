@@ -58,6 +58,7 @@ Thanks to the people who wrote the original skills.
 | [obra/superpowers][3]                | `executing-plans`                  |
 | [JuliusBrussee/caveman][4]           | [`caveman-commit`][5]              |
 | [szkocot/andrej-karpathy-skills][6]  | [`karpathy-guidelines`][7]         |
+| [mattpocock/skills][8]               | [`grill-me`][9]                    |
 
 [1]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/writing-plans
 [2]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/subagent-driven-development
@@ -66,3 +67,5 @@ Thanks to the people who wrote the original skills.
 [5]: https://github.com/JuliusBrussee/caveman/tree/ed706fa09843f67173be5ff29fb1f3b06f10e904/skills/caveman-commit/SKILL.md
 [6]: https://github.com/szkocot/andrej-karpathy-skills
 [7]: https://github.com/szkocot/andrej-karpathy-skills/blob/64723a49ea6117894304eb491f0d32a60570bf45/skills/karpathy-guidelines/SKILL.md
+[8]: https://github.com/mattpocock/skills
+[9]: https://github.com/mattpocock/skills/blob/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/productivity/grilling/SKILL.md
