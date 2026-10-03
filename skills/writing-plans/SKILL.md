@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Prerequisites
 
-**REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). Load the `caveman-commit` skill for commit message descriptions. All commit steps in plans use the temp file pattern for multi-line content.
+**REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). Load the `caveman-commit` skill for commit message descriptions. All commit steps in plans reference the `core-commands` commit sequence (mktemp + Read + Write + `jj describe --stdin`). Never inline a commit message into a bash one-liner.
 
 ## Scope Check
 
@@ -96,10 +96,12 @@ Expected: PASS
 
 - [ ] **Step 5: Commit with caveman-commit**
 
-Use `caveman-commit` for the commit message, then the temp file pattern from `core-commands`:
+Use `caveman-commit` for the message content, then the commit sequence from `core-commands`:
 
-```bash
-jj describe --stdin < "$TMPFILE" && rm "$TMPFILE" && jj new
+1. `mktemp`
+2. Read the temp file (required even though empty)
+3. Write the commit message to the temp file
+4. `jj describe --stdin < "/tmp/tmp.XXXXXX" && rm "/tmp/tmp.XXXXXX" && jj new`
 ```
 ````
 

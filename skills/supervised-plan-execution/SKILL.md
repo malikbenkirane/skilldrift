@@ -93,9 +93,14 @@ For each task:
    - If issues: Fix them, then re-review
    - Do NOT proceed until code quality passes
 
-6. **Commit** - Use `caveman-commit` for the message, then the temp file pattern from `core-commands`:
+6. **Commit** - Use `caveman-commit` for the message content, then the commit sequence from `core-commands`:
 
-   jj describe --stdin < "$TMPFILE" && rm "$TMPFILE" && jj new
+   1. `mktemp`
+   2. Read the temp file (required even though empty)
+   3. Write the commit message to the temp file
+   4. `jj describe --stdin < "/tmp/tmp.XXXXXX" && rm "/tmp/tmp.XXXXXX" && jj new`
+
+   NEVER write the message with `printf`/`echo`/heredoc, and NEVER use `jj describe -m`. If the Write tool fails, re-Read and re-Write; do not fall back to shell redirection.
 
 7. **Mark as completed**
 
@@ -136,9 +141,7 @@ After spec compliance passes, use `./code-quality-reviewer-prompt.md` to verify:
 
 ### Commit After Each Task
 
-Once both reviews pass, commit using `caveman-commit` for the message and the temp file pattern from `core-commands`:
-
-   jj describe --stdin < "$TMPFILE" && rm "$TMPFILE" && jj new
+Once both reviews pass, commit using `caveman-commit` for the message content and the commit sequence from `core-commands` (mktemp + Read + Write + `jj describe --stdin < <literal path>`). Never use `jj describe -m` or shell redirection as the message source.
 
 **Why commit after each task?** Atomic commits make review easier, enable rollback, and document your progress.
 
@@ -193,7 +196,7 @@ If a plan's commit step conflicts with `core-commands`, follow `core-commands`.
 - Fix issues immediately, not "later"
 - Two-stage review: spec compliance FIRST, then code quality
 - Commit after each task (atomic commits = easier review + rollback)
-- Use temp file pattern from core-commands for multi-line content
+- Use temp file pattern from core-commands for multi-line content (Read before Write, even on empty mktemp files; no printf/echo/heredoc fallback)
 
 ## Integration
 
