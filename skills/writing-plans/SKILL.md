@@ -5,6 +5,8 @@ description: Create detailed implementation plans from specs before coding. Trig
 
 # Writing Plans
 
+> **Diverged from obra/superpowers:** added a complexity gate + multi-plan split workflow (directory with `00-index.md`, concurrency batches). See `docs/issues/26.md`.
+
 ## Overview
 
 Write comprehensive implementation plans assuming the engineer has zero context for our codebase and questionable taste. Document everything they need to know: which files to touch for each task, code, testing, docs they might need to check, how to test it. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
@@ -16,6 +18,54 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 ## Prerequisites
 
 **REQUIRED:** Load the `core-commands` skill for VCS operations (uses `jj`, not `git`). Load the `caveman-commit` skill for commit message descriptions. All commit steps in plans reference the `core-commands` commit sequence (mktemp + Read + Write + `jj describe --stdin`). Never inline a commit message into a bash one-liner.
+
+## Complexity Gate
+
+After exploration, **before writing any plan file**, estimate the plan's size using worst-case arithmetic: `worst-case lines per task × total numbered tasks` (each TDD task is typically 60-170 lines when it contains full code, test, and the commit sequence; never justify shortness with "similar to Task N" — placeholders are forbidden).
+
+If the estimate exceeds **600 lines** OR the task count exceeds **15 tasks**, the plan is oversized. Do not write it as one file. Instead, in chat (going ahead without waiting if the user is hands-off):
+
+1. Propose a split into sub-plans and the proposed boundaries (group tasks per sub-plan),
+2. On approval (or a decline, recorded as below), proceed to **Multi-Plan Split** below.
+
+If the user **declines** the split, note it: record "gate fired; user chose single file" in a `## Complexity` line in the plan header, and continue single-file. Do not re-ask.
+
+**If a plan oversized while being written (Q5):** finish it as a deliberately small single-file plan, then propose the split in chat and convert in the next change. Never leave half-converted plans on disk.
+
+**Boundary changes after execution starts (Q10):** finish the current sub-plan first, rewrite `00-index.md`, and get approval of the change before the next sub-plan.
+
+## Multi-Plan Split
+
+When the gate fires and the user approves, output is a **directory**, not one file:
+
+- `docs/plans/<DATETIME>_<TITLE>/` — `00-index.md` first (`01-…` etc. written after), one sub-plan at a time, never in parallel writing.
+
+**`00-index.md` contains (keep compact):**
+
+```markdown
+# <Title> — Index
+
+Sub-plans (execution order):
+- [ ] 01-<subtitle> — <one-line scope>
+- [ ] 02-<subtitle> — <one-line scope>
+
+Concurrent-eligible batches: `[01-x, 02-y], [03-z]`
+
+Why this order and split: <short rationale>. Each batch is the safe unit for one concurrent session; same-file edits stay within a batch.
+```
+
+Each sub-plan is a normal single plan run through `supervised-plan-execution`; highlight independent sub-plans so they can run in concurrent sessions per the batches. When a sub-plan finishes, tick its checkbox in `00-index.md` in a **separate commit** (core-commands temp-file pattern), message: `docs(plans): mark <NN>-<subtitle> done in <title>` (e.g. `docs(plans): mark 02-sessions done in auth-refactor`).
+
+If the gate fired but the user declined the split, write `00-index.md` anyway recording only: "gate fired; user chose single file" plus the single plan path.
+
+## Rationalization Table
+
+| Rationalization | Why it's wrong |
+|---|---|
+| "It's really just a few tasks" | Count them. The 600-line estimate is mandatory before writing. TDD + no-placeholder rules make tasks far longer than they feel. |
+| "The user asked for a plan, not a split" | The gate is a measure-then-act rule, not a suggestion. A declined split is recorded once; re-asking is not required. |
+| "We've already started, just keep going" (sunk cost) | Prior effort is not a size criterion. Finish small and propose the split — never a half-converted plan. |
+| "It's one subsystem, so no gate" | The gate measures document size, not domain granularity. One subsystem can exceed the lines threshold. |
 
 ## Scope Check
 
@@ -140,6 +190,7 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 **Save plans to:** `docs/plans/<slug-name>.md`
 
 - `slug-name` = kebab-case feature description (e.g., `user-auth-flow.md`, `api-rate-limiting.md`)
+- When the complexity gate fired and was approved: `docs/plans/<DATETIME>_<TITLE>/` directory with `00-index.md` and `01-<subtitle>.md`, `02-<subtitle>.md`, … (dashes, not underscores)
 - User preferences override this default
 
 ## Execution Handoff
