@@ -45,20 +45,25 @@ Section list:
   details. Use concrete examples with toy data. Use Mermaid diagrams liberally.
 - **Code**: High-level walkthrough of the changes, grouped/ordered in an understandable way.
 - **Quiz**: Five medium-difficulty questions testing the substance of the change — hard
-  enough that the reader must understand it, but not gotchas. One collapsible block per
-  question; options visible, answer and feedback collapsed.
+  enough that the reader must understand it, but not gotchas. One question per quiz item:
 
 ```markdown
-<details>
-<summary>Q1. ...</summary>
+**Q1. ...**
 
-- A. ...
-- B. ...
-- C. ...
+A. ...
+B. ...
+C. ...
+
+<details>
+<summary>Show answer</summary>
 
 **Correct: B.** <why, and feedback on the other options>
 </details>
 ```
+
+Never put the question text inside `<summary>` — some chat renderers
+swallow summary content, leaving only options and the answer visible.
+The question and options must survive as plain visible Markdown.
 
 ## Writing style
 
