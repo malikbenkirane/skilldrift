@@ -3,42 +3,118 @@ name: grill-me
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.
 ---
 
-Interview the user relentlessly until you reach a shared understanding. Map
-this as a **design tree**: every decision branches into the decisions that hang
-off it.
+# Grill-me
 
-Work the tree in **rounds**. The **frontier** is every decision whose
-prerequisites are already settled: the questions you can ask _now_ without
-guessing at answers you haven't heard yet. Ask the whole frontier in one round:
-number each question and give your recommended answer. Then wait for the user's
-answers before the next round.
+Interview the user relentlessly until you reach a shared understanding.
 
-Format a round like so:
+## Glossary
+
+- **Design tree** — the map being built: every decision branches into the decisions that hang off it.
+- **Frontier** — every decision whose prerequisites are already settled; the questions you can ask now without guessing unheard answers.
+- **Retained** — a frontier question that didn't fit a round's cap; keeps its place in the frontier and is served in a later round.
+- **Recap** — the intro paragraphs and capped per-branch summaries opening each round (below).
+- **Abstract** — the prose frame at the top of a question block, directly under the question heading (no heading of its own).
+- **Reminder** — the bullet list after a question's recommendation, restating just the branches that question leaned on.
+- **Legend** — the per-branch summary closing the session (below).
+
+## Rounds
+
+Work the tree in rounds. Ask as many frontier questions as fit the round, then
+wait for the answers before the next round.
+
+- Cap every round at **5 questions** and every question at **5 choices**.
+- Questions that don't fit are retained: never drop a question to make a cap;
+  the cap shapes the presentation, not the tree.
+- Each round's answers reshape the tree: settled decisions push the frontier
+  outward and unblock questions that depended on them. Recompute the frontier,
+  recount it in the next recap, and ask the next round.
+- A question whose answer depends on another question still open in this round
+  belongs to a later round, not this one.
+
+## Round format
+
+Open each round with an intro paragraph (3–5 sentences: where the tree stands and
+what this round is for), then the recap branches, then the question blocks. Heading
+levels: round is `##`, question `###`, question stages `####`. Each question block
+is visually self-contained; leave exactly one blank line between blocks.
 
 ```
-❓ **Q1** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+## Round <n>
 
-➡️ <your recommended answer>
+<Intro paragraph, 3–5 sentences: where the tree stands, what this round is for.>
+
+Settled so far — one capped paragraph per branch (max 5 branches;
+per-decision detail lives only in the closing legend):
+
+### <Branch title>
+
+<3–5 sentences: what this branch settled, joint summary.>
+
+Newly settled this round: [**<tag>**], [**<tag>**], ...
+
+Remaining frontier: <k> questions (<j> served below; rest retained).
 
 ---
 
-❓ **Q2** - **<question title>**: <question body, might be multiple paragraphs, including multiple choices>
+### Q<n>.m — <question title>
 
-➡️ <your recommended answer>
-```
+<Abstract: the frame as plain prose, 2–3 short paragraphs, one blank line
+between them:
+1st — the settled context being challenged (what was decided, tag if any).
+2nd — the concrete failure or consequence if it stands.
+3rd (if needed) — the one-sentence decision point.
+Each paragraph: 3–5 sentences (1–2 is too thin; split paragraphs rather than
+stretch them). No paragraph should exceed 5 sentences.
+Enumerations of cases are not abstract material: they are facts (dispatch a
+sub-agent) or belong inside the options. A question is one decision; anything
+starting with "and..." is its own frontier question.>
 
-Each round the user answers reshapes the tree: settled decisions push the
-frontier outward and unblock questions that depended on them. Recompute the
-frontier and ask the next round. A question whose answer depends on another
-question still open in this round belongs to a _later_ round, not this one.
+#### Options
 
-Finding _facts_ is your job, never the user's. When a frontier question needs
-a fact from the environment (filesystem, tools, etc.), dispatch a sub-agent to
-find it; don't ask the user for anything you could look up yourself. Don't block
-on it: a running exploration is an unsettled prerequisite, so only the questions
-downstream of it wait for the sub-agent to report; ask the rest of the frontier
-now. The _decisions_ are the user's: put each to them and wait.
+1. <choice>
+2. <choice>
+3. <choice>
 
-The session is done when the frontier is empty: every branch of the design tree
-visited, nothing left silently assumed. Do not act on it until the user confirms
-you have reached a shared understanding.
+#### Recommendation
+
+➡️ <choice>, because <one reason>.
+
+#### Reminder
+
+- [**<tag>**] <one-phrase summary>
+- [**<tag>**] <one-phrase summary>
+
+(next question block after the blank line)
+````
+
+## Facts vs. decisions
+
+Finding facts is your job, never the user's.
+
+- When a frontier question needs a fact from the environment (filesystem,
+  tools, etc.), dispatch a sub-agent to find it; don't ask the user for
+  anything you could look up yourself.
+- Don't block on it: a running exploration is an unsettled prerequisite, so
+  only the questions downstream of it wait for the sub-agent to report; ask
+  the rest of the frontier now.
+
+The decisions are the user's: put each to them and wait.
+
+## Closing
+
+The session is done when the frontier is empty: every branch of the design
+tree visited, nothing left silently assumed. Close with a legend, not a
+narrative — one section per branch, each with 2–5 tagged bullets:
+
+````
+## Legend — <tree topic>
+
+**Branch — <data of the branch>**
+
+- [**<tag>**] <settled decision>, because <one reason>.
+
+**Branch — ...**
+````
+
+Then wait for the user to confirm you have reached a shared understanding —
+do not act on it until they do.
