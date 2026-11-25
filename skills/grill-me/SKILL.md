@@ -66,12 +66,14 @@ per-decision detail lives only in the closing legend):
 
 ### <Branch title>
 
-<What this branch settled — joint summary. One idea per paragraph, topic
-sentence first.>
+<Branch digest. 1–2 settled decisions: one paragraph, topic sentence first.
+3 or more: one bullet per decision, tag-first — a proto-legend of the
+closing legend's shape.>
 
 Newly settled this round: [**<tag>**], [**<tag>**], ...
 
-Remaining frontier: <k> questions (<j> served below; rest retained).
+Remaining frontier: <k> questions (<j> served below; rest retained;
+retained questions are named on this line only — no trailing recap section).
 
 ---
 
