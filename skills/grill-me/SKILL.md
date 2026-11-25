@@ -13,7 +13,7 @@ Interview the user relentlessly until you reach a shared understanding.
 - **Frontier** — every decision whose prerequisites are already settled; the questions you can ask now without guessing unheard answers.
 - **Retained** — a frontier question that didn't fit a round's cap; keeps its place in the frontier and is served in a later round.
 - **Recap** — the intro paragraphs and capped per-branch summaries opening each round (below).
-- **Abstract** — the prose frame at the top of a question block, directly under the question heading (no heading of its own).
+- **Abstract** — the prose frame at the top of a question block, directly under the question heading (no heading of its own). Its content slots (decided context, concrete failure, decision point) are required; paragraph form follows the ≤2-sentence cap in `Round format`.
 - **Reminder** — the bullet list after a question's recommendation, restating just the branches that question leaned on.
 - **Legend** — the per-branch summary closing the session (below).
 
@@ -33,22 +33,25 @@ wait for the answers before the next round.
 
 ## Round format
 
-Open each round with an intro paragraph (3–5 sentences: where the tree stands and
-what this round is for), then the recap branches, then the question blocks. Heading
+Open each round with an intro (≤2 sentences per paragraph, split across
+paragraphs as needed: where the tree stands and what this round is for), then
+the recap branches, then the question blocks. Heading
 levels: round is `##`, question `###`, question stages `####`. Each question block
 is visually self-contained; leave exactly one blank line between blocks.
 
 ```
 ## Round <n>
 
-<Intro paragraph, 3–5 sentences: where the tree stands, what this round is for.>
+<Intro: where the tree stands, what this round is for. ≤2 sentences per
+paragraph; split across paragraphs as needed.>
 
-Settled so far — one capped paragraph per branch (max 5 branches;
+Settled so far — one capped summary per branch (max 5 branches;
 per-decision detail lives only in the closing legend):
 
 ### <Branch title>
 
-<3–5 sentences: what this branch settled, joint summary.>
+<What this branch settled — joint summary. ≤2 sentences per paragraph; split
+across paragraphs as needed.>
 
 Newly settled this round: [**<tag>**], [**<tag>**], ...
 
@@ -58,13 +61,14 @@ Remaining frontier: <k> questions (<j> served below; rest retained).
 
 ### Q<n>.m — <question title>
 
-<Abstract: the frame as plain prose, 2–3 short paragraphs, one blank line
-between them:
-1st — the settled context being challenged (what was decided, tag if any).
-2nd — the concrete failure or consequence if it stands.
-3rd (if needed) — the one-sentence decision point.
-Each paragraph: 3–5 sentences (1–2 is too thin; split paragraphs rather than
-stretch them). No paragraph should exceed 5 sentences.
+<Abstract: the frame as plain prose. No sentence floor; no paragraph exceeds
+2 sentences. One blank line between paragraphs. Content slots, however many
+paragraphs they take:
+1. Decided context being challenged (what was decided, tag if any).
+2. Concrete failure or consequence if it stands.
+3. Decision point — what must now be decided.
+Slots may share a paragraph when the frame is simple; their content, not a
+paragraph per slot, is required.
 Enumerations of cases are not abstract material: they are facts (dispatch a
 sub-agent) or belong inside the options. A question is one decision; anything
 starting with "and..." is its own frontier question.>
