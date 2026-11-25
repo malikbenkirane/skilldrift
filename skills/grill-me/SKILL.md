@@ -67,8 +67,8 @@ paragraphs they take:
 1. Decided context being challenged (what was decided, tag if any).
 2. Concrete failure or consequence if it stands.
 3. Decision point — what must now be decided.
-Slots may share a paragraph when the frame is simple; their content, not a
-paragraph per slot, is required.
+Order slots as listed; if a paragraph reaches 2 sentences, break before the
+next slot.
 Enumerations of cases are not abstract material: they are facts (dispatch a
 sub-agent) or belong inside the options. A question is one decision; anything
 starting with "and..." is its own frontier question.>
