@@ -72,6 +72,7 @@ Thanks to the people who wrote the original skills.
 | [szkocot/andrej-karpathy-skills][6]  | [`karpathy-guidelines`][7]         |
 | [mattpocock/skills][8]               | [`grill-me`][9]                    |
 | [geoffreylitt/explain-diff-html gist][10] | `explain-diff`                |
+| [ayghri/i-have-adhd][10]             | [`i-have-adhd`][11]                |
 
 [1]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/writing-plans
 [2]: https://github.com/obra/superpowers/tree/f2cbfbe/skills/subagent-driven-development
@@ -83,3 +84,5 @@ Thanks to the people who wrote the original skills.
 [8]: https://github.com/mattpocock/skills
 [9]: https://github.com/mattpocock/skills/blob/c55ee46073ed923f86ce59a5eb3b6d895095d1b7/skills/productivity/grilling/SKILL.md
 [10]: https://gist.githubusercontent.com/geoffreylitt/a29df1b5f9865506e8952488eac3d524/raw/126e7fe9eecaafadfe1ac8bb183d135812b608f2/explain-diff-html.md
+[10]: https://github.com/ayghri/i-have-adhd
+[11]: https://github.com/ayghri/i-have-adhd/blob/main/skills/i-have-adhd/SKILL.md
