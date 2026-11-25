@@ -73,7 +73,7 @@ closing legend's shape.>
 Newly settled this round: [**<tag>**], [**<tag>**], ...
 
 Remaining frontier: <k> questions (<j> served below; rest retained;
-retained questions are named on this line only — no trailing recap section).
+retained questions are named on this line only).
 
 ---
 
@@ -106,7 +106,13 @@ starting with "and..." is its own frontier question.>
 - [**<tag>**] <one-phrase summary>
 - [**<tag>**] <one-phrase summary>
 
-(next question block after the blank line)
+<Closeout — after the last question block: what happens once the user
+answers (frontier recomputes, legend, plan, next steps). One or two
+sentences, next-step promise only; no re-summary of questions or of the
+frontier count.>
+
+(next question block after the blank line; closeout comes last,
+after the final question block)
 ````
 
 ## Facts vs. decisions
