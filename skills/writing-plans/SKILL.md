@@ -66,6 +66,9 @@ If the gate fired but the user declined the split, write `00-index.md` anyway re
 | "The user asked for a plan, not a split" | The gate is a measure-then-act rule, not a suggestion. A declined split is recorded once; re-asking is not required. |
 | "We've already started, just keep going" (sunk cost) | Prior effort is not a size criterion. Finish small and propose the split — never a half-converted plan. |
 | "It's one subsystem, so no gate" | The gate measures document size, not domain granularity. One subsystem can exceed the lines threshold. |
+| "The user said 'issue 7', close enough to create it" | Only an existing `docs/issues/NN.md` counts. Writing `issue-7` into a filename without the file is a broken link; apply the plain pattern instead. |
+| "The infix is decoration, the plan body mentions the issue anyway" | The infix locates the plan by issue number without opening files; prose mentions can't be found by name. Existence check + infix + header link are the rule. |
+| "No globbing needed, I'll guess which issue fits" | The trigger is the user's explicit reference to `docs/issues/NN.md`. Inferring an issue the user didn't name links the plan to the wrong motivation. |
 
 ## Scope Check
 
@@ -190,7 +193,9 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 **Save plans to:** `docs/plans/<slug-name>.md`
 
 - `slug-name` = kebab-case feature description (e.g., `user-auth-flow.md`, `api-rate-limiting.md`)
-- When the complexity gate fired and was approved: `docs/plans/<DATETIME>_<TITLE>/` directory with `00-index.md` and `01-<subtitle>.md`, `02-<subtitle>.md`, … (dashes, not underscores)
+- If the request references a specific issue `docs/issues/NN.md` **and** `docs/issues/NN.md` exists at plan-writing time: save to `docs/plans/<DATETIME>_issue-<NN>_<fitted_name>.md` (single file; `fitted_name` = kebab-case) and add an `**Issue:** docs/issues/NN.md` line to the plan header. This applies to the user's explicit reference to an issue only — do not glob the request for issues it "may relate to".
+- If the issue infix applies and the complexity gate fired and was approved: `docs/plans/<DATETIME>_issue-<NN>_<TITLE>/` with `00-index.md` and `01-<subtitle>.md`, `02-<subtitle>.md`, … (dashes, not underscores)
+- If `docs/issues/NN.md` does not exist, the infix is not applied: save to the plain patterns above.
 - User preferences override this default
 
 ## Execution Handoff
